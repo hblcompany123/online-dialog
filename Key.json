@@ -1,14 +1,18 @@
 {
   "AdminUrl": "https://t.me/dp_mods",
-  "Marquee": "Message 1the admin to buy a VIP key. Only paid users allowed.",
+  "Marquee": "Message the admin to buy a VIP key. Only paid users allowed.",
   "Users": [
     {
-      "ID": "52F5B3E5666E3DC5",
+      "ID": "3BA4A93F018DC799",
       "Expiry": "27/12/2026"
     },
     {
       "ID": "FRIEND_DEVICE_ID_HERE",
       "Expiry": "01/01/2025"
+    },
+    {
+      "ID": "bbbbjjj",
+      "Expiry": "28/12/2025"
     }
   ]
 }
