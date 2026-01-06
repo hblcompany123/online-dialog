@@ -27,8 +27,8 @@
       "interval": "1week",
       "toast": "Welcome back, VIP Legend! 👑"
     },
-    "TRIAL-KEY": {
-      "expiry": "3d",
+    "TRIAL": {
+      "expiry": "3s",
       "interval": "everytime",
       "toast": "3-Day Trial Started ⏳"
     },
