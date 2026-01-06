@@ -6,7 +6,7 @@
     "profile_image_url": "https://riot-us.com/wp-content/uploads/2025/09/Still-23-%C2%A9Copyright_-%C2%A9Koyoharu-Gotoge-_-SHUEISHA-Aniplex-ufotable.jpg",
     "button_login_text": "Login",
     "button_contact_text": "Admin Contact",
-    "admin_contact_url": "https://t.me/dp_mods"
+    "admin_contact_url": "https://wa.me/qr/U5FGY2YLQZWJK1"
   },
   "status_config": {
     "maintenance_enabled": false,
@@ -20,6 +20,18 @@
   },
   "users": [
     {
+      "username": "shadow",
+      "password": "new",
+      "device_id": "eae8a656-04cd-4e71-9929-c74b3faa6d51",
+      "expiry_date_utc": "2026-09-09"
+    },
+     {
+      "username": "shadow",
+      "password": "shadow1",
+      "device_id": "d8201def-3b36-45c4-a849-395d9db8ef42",
+      "expiry_date_utc": "2026-09-09"
+    },
+        {
       "username": "shadow",
       "password": "shadow1",
       "device_id": "d8201def-3b36-45c4-a849-395d9db8ef42",
