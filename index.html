@@ -1,105 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Active Users</title>
+<title>DPMods Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  background: #0f0f1a;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+body{
+  margin:0;
+  background:#0f0f1a;
+  color:#fff;
+  font-family:Arial;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
-
-#box {
-  background: #1c1c2b;
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 350px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+.box{
+  background:#1c1c2b;
+  padding:20px;
+  border-radius:12px;
+  width:90%;
+  max-width:350px;
+  text-align:center;
 }
-
-h2 {
-  margin-top: 0;
-  text-align: center;
-  color: #9c27b0;
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:6px;
 }
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-li {
-  background: #2a2a3d;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 6px;
-  text-align: center;
-  font-weight: bold;
-}
-
-#status {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.8;
-}
+input{background:#2a2a3d;color:#fff}
+button{background:#8e44ad;color:#fff;font-weight:bold}
+.small{font-size:13px;opacity:.8;margin-top:10px}
+.red{background:#c0392b}
 </style>
 </head>
 
 <body>
-
-<div id="box">
-  <h2>Active Users</h2>
-  <ul id="list"></ul>
-  <div id="status">Loading...</div>
-</div>
+<div class="box" id="app">Loading...</div>
 
 <script>
-const DATA_URL =
-"https://raw.githubusercontent.com/hblcompany123/online-dialog/main/Key.json";
+const DATA_URL="https://raw.githubusercontent.com/hblcompany123/online-dialog/main/Key.json";
 
-async function loadActiveKeys() {
-  try {
-    const res = await fetch(DATA_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed");
+const app=document.getElementById("app");
 
-    const data = await res.json();
-    const list = document.getElementById("list");
-    const status = document.getElementById("status");
-
-    list.innerHTML = "";
-    let count = 0;
-
-    data.keys.forEach(item => {
-      if (item.active === true) {
-        const li = document.createElement("li");
-        li.textContent = item.key;
-        list.appendChild(li);
-        count++;
-      }
-    });
-
-    status.textContent =
-      count > 0 ? count + " active users" : "No active users";
-
-  } catch (e) {
-    document.getElementById("status").textContent =
-      "Error loading data";
+function parseExpiry(exp,start){
+  if(exp==="lifetime") return Infinity;
+  if(exp.match(/^\d+[hdmy]$/)){
+    let n=parseInt(exp);
+    let t=exp.slice(-1);
+    let ms={
+      h:3600000,
+      d:86400000,
+      m:2592000000,
+      y:31536000000
+    }[t];
+    return start+n*ms;
   }
+  return new Date(exp).getTime();
 }
 
-loadActiveKeys();
-</script>
+function logout(){
+  localStorage.removeItem("dp_key");
+  localStorage.removeItem("dp_start");
+  location.reload();
+}
 
+function showLogin(msg=""){
+  app.innerHTML=`
+    <h3>Enter Key</h3>
+    <input id="key" placeholder="Enter key">
+    <button onclick="login()">Login</button>
+    <div class="small">${msg}</div>
+  `;
+}
+
+async function login(){
+  let k=document.getElementById("key").value.trim();
+  let r=await fetch(DATA_URL,{cache:"no-store"});
+  let j=await r.json();
+
+  if(!j.keys[k]){ showLogin("Invalid key ❌"); return; }
+
+  localStorage.setItem("dp_key",k);
+  localStorage.setItem("dp_start",Date.now());
+  location.reload();
+}
+
+async function main(){
+  let r=await fetch(DATA_URL,{cache:"no-store"});
+  let j=await r.json();
+
+  let key=localStorage.getItem("dp_key");
+  let start=parseInt(localStorage.getItem("dp_start"));
+
+  if(!key){ showLogin(); return; }
+
+  let info=j.keys[key];
+  if(!info){ logout(); return; }
+
+  let expiry=parseExpiry(info.expiry,start);
+  if(Date.now()>expiry){
+    logout();
+    return;
+  }
+
+  app.innerHTML=`
+    <h3>Access Granted ✅</h3>
+    <p>${info.toast||""}</p>
+    <div class="small">Key: ${key}</div>
+    <div class="small">Expires: ${
+      expiry===Infinity?"Never":new Date(expiry).toLocaleString()
+    }</div>
+    <button class="red" onclick="logout()">Delete / Logout</button>
+  `;
+}
+
+main();
+</script>
 </body>
 </html>
