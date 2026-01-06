@@ -7,7 +7,7 @@
   },
   "loginDialog": {
     "title": "Welcome To DPMods",
-    "subtitle": "If you don't have a key, contact Admin. Otherwise, enter your key and press Login.",
+    "subtitle": "If king you don't have a key, contact Admin. Otherwise, enter your key and press Login.",
     "loginButtonText": "Login",
     "adminButtonText": "Get Key",
     "adminUrl": "https://t.me/your_channel"
