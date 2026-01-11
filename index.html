@@ -23,49 +23,31 @@ canvas{
  align-items:center;
  flex-direction:column;
  text-align:center;
- padding:20px;
+ padding:25px;
 }
 .page.active{display:flex}
 
-.count{font-size:80px;color:#ff4d6d}
+.count{font-size:90px;color:#ff4d6d}
 
 button{
- margin-top:30px;
- padding:12px 35px;
+ margin-top:35px;
+ padding:12px 40px;
  border:none;
- border-radius:25px;
+ border-radius:30px;
  background:#ff4d6d;
  color:white;
- font-size:16px;
+ font-size:17px;
  cursor:pointer;
-}
-
-/* NAME */
-.zoom-name{
- font-size:45px;
- color:#ff4d6d;
- animation:zoomIn 2s ease forwards;
- transform:scale(0);
- min-height:60px;
-}
-
-@keyframes zoomIn{
- to{transform:scale(1.3)}
-}
-
-.emoji{
- font-size:30px;
- margin-bottom:15px;
 }
 
 /* FLOWERS */
 .flower{
  position:absolute;
  font-size:30px;
- animation:rotate 6s linear infinite;
+ animation:spin 6s linear infinite;
 }
-@keyframes rotate{
- from{transform:rotate(0deg)}
+@keyframes spin{
+ from{transform:rotate(0)}
  to{transform:rotate(360deg)}
 }
 .tl{top:15px;left:15px}
@@ -73,27 +55,38 @@ button{
 .bl{bottom:15px;left:15px}
 .br{bottom:15px;right:15px}
 
-/* TEXT */
+/* NAME */
+.zoom-name{
+ font-size:46px;
+ color:#ff4d6d;
+ animation:zoom 2s ease forwards;
+ transform:scale(0);
+ min-height:60px;
+}
+@keyframes zoom{
+ to{transform:scale(1.3)}
+}
+
 .title{
- font-size:38px;
+ font-size:36px;
  color:#ff4d6d;
  margin-bottom:15px;
  min-height:50px;
 }
 .text{
- max-width:700px;
- line-height:1.8;
- min-height:60px;
+ max-width:750px;
+ line-height:1.9;
+ min-height:80px;
+ font-size:17px;
 }
 
-/* CURSOR */
+.emoji{font-size:32px;margin-bottom:15px}
+
 .cursor::after{
  content:"|";
  animation:blink 1s infinite;
 }
-@keyframes blink{
- 50%{opacity:0}
-}
+@keyframes blink{50%{opacity:0}}
 </style>
 </head>
 
@@ -101,18 +94,15 @@ button{
 
 <canvas id="stars"></canvas>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 COUNTDOWN -->
 <div class="page active" id="p1">
  <div class="count" id="count">5</div>
 </div>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 NAME -->
 <div class="page" id="p2">
- <div class="flower tl">🌸</div>
- <div class="flower tr">🌸</div>
- <div class="flower bl">🌸</div>
- <div class="flower br">🌸</div>
-
+ <div class="flower tl">🌸</div><div class="flower tr">🌸</div>
+ <div class="flower bl">🌸</div><div class="flower br">🌸</div>
  <div class="emoji">💖 💍 💖</div>
  <div class="zoom-name cursor" id="typeName"></div>
  <button onclick="go(3)">Next</button>
@@ -120,36 +110,93 @@ button{
 
 <!-- PAGE 3 -->
 <div class="page" id="p3">
- <div class="title cursor" id="typeAnn"></div>
- <div class="text cursor" id="typeAnnText"></div>
+ <div class="title cursor" id="type3t"></div>
+ <div class="text cursor" id="type3"></div>
  <button onclick="go(4)">Next</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="p4">
- <div class="title">Date 4 – First Meet</div>
- <div class="text cursor" id="type5"></div>
+ <div class="title">Date 5 – First Meet</div>
+ <div class="text cursor" id="type4"></div>
  <button onclick="go(5)">Next</button>
 </div>
 
 <!-- PAGE 5 -->
 <div class="page" id="p5">
  <div class="title">Date 6 – Friendship</div>
- <div class="text cursor" id="type6"></div>
+ <div class="text cursor" id="type5"></div>
  <button onclick="go(6)">Next</button>
 </div>
 
 <!-- PAGE 6 -->
 <div class="page" id="p6">
  <div class="title">Date 13 – Purpose Day ⭐</div>
- <div class="text cursor" id="type13"></div>
+ <div class="text cursor" id="type6"></div>
  <button onclick="go(7)">Next</button>
 </div>
 
 <!-- PAGE 7 -->
-<div class="page" id="p7"><button onclick="go(8)">Next</button></div>
-<div class="page" id="p8"><button onclick="go(9)">Next</button></div>
-<div class="page" id="p9"><div class="title">💖</div></div>
+<div class="page" id="p7">
+ <div class="title">Memories 🌸</div>
+ <div class="text cursor" id="type7"></div>
+ <button onclick="go(8)">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+ <div class="title">Promises 🤍</div>
+ <div class="text cursor" id="type8"></div>
+ <button onclick="go(9)">Next</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+ <div class="title">Ups & Downs</div>
+ <div class="text cursor" id="type9"></div>
+ <button onclick="go(10)">Next</button>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="p10">
+ <div class="title">Support 🫶</div>
+ <div class="text cursor" id="type10"></div>
+ <button onclick="go(11)">Next</button>
+</div>
+
+<!-- PAGE 11 -->
+<div class="page" id="p11">
+ <div class="title">Trust</div>
+ <div class="text cursor" id="type11"></div>
+ <button onclick="go(12)">Next</button>
+</div>
+
+<!-- PAGE 12 -->
+<div class="page" id="p12">
+ <div class="title">Love Grows 💖</div>
+ <div class="text cursor" id="type12"></div>
+ <button onclick="go(13)">Next</button>
+</div>
+
+<!-- PAGE 13 -->
+<div class="page" id="p13">
+ <div class="title">Forever ♾️</div>
+ <div class="text cursor" id="type13"></div>
+ <button onclick="go(14)">Next</button>
+</div>
+
+<!-- PAGE 14 -->
+<div class="page" id="p14">
+ <div class="title">My Dua 🤲</div>
+ <div class="text cursor" id="type14"></div>
+ <button onclick="go(15)">Next</button>
+</div>
+
+<!-- PAGE 15 -->
+<div class="page" id="p15">
+ <div class="emoji">💖 💖 💖</div>
+ <div class="title">Always You</div>
+</div>
 
 <script>
 function go(n){
@@ -160,80 +207,80 @@ function go(n){
 
 /* COUNTDOWN */
 let c=5;
-let timer=setInterval(()=>{
- document.getElementById("count").innerText=c;
+let t=setInterval(()=>{
+ count.innerText=c;
  c--;
- if(c===0){
-  clearInterval(timer);
-  setTimeout(()=>go(2),1000);
- }
+ if(c<0){clearInterval(t);go(2);}
 },1000);
 
-/* TYPE WRITER */
+/* TEXT DATA */
 const texts={
- 2:{id:"typeName",text:"Ibrat ❤️ Waqas"},
- 3:[
-   {id:"typeAnn",text:"Happy Anniversary 💖"},
-   {id:"typeAnnText",text:"Together is the most beautiful place to be."}
- ],
- 4:{id:"type4",text:"First time jb Mainy ap ki ankhy 👉👀 dakhi hyy ya wo dinn hai jis pr mujy ai ap pasand jannnnnnnnnn is sy behatar din or kiya ho sakta hai akhir."},
- 5:{id:"type6",text:"Trust, comfort and understanding began here."},
- 6:{id:"type13",text:"This day gave meaning, responsibility and a beautiful reason."}
+2:{id:"typeName",text:"Ibrat ❤️ Waqas"},
+3:[
+ {id:"type3t",text:"Happy Anniversary 💖"},
+ {id:"type3",text:"Together is not a place, it’s a feeling where hearts feel safe."}
+],
+4:{id:"type4",text:"Wo pehla din jab tumhari aankhon ne mere dil se baat ki. Us pal ne sab kuch badal diya."},
+5:{id:"type5",text:"Dosti se shuru hone wala rishta kab mohabbat ban gaya, pata hi nahi chala."},
+6:{id:"type6",text:"Is din ne zindagi ko maqsad, zimmedari aur ek khoobsurat wajah di."},
+7:{id:"type7",text:"Har choti baat, har hansi, har lamha ek yaad ban gaya."},
+8:{id:"type8",text:"Main wada karta hoon har halat mein tumhara saath dunga."},
+9:{id:"type9",text:"Mushkilein aayi, lekin haath kabhi chhoda nahi."},
+10:{id:"type10",text:"Tumhara saath meri sab se bari taqat hai."},
+11:{id:"type11",text:"Bharosa hi woh bunyaad hai jis par hum kharay hain."},
+12:{id:"type12",text:"Mohabbat waqt ke sath kam nahi hui, aur gehri hoti gayi."},
+13:{id:"type13",text:"Forever ka matlab sirf tum ho."},
+14:{id:"type14",text:"Allah hum dono ko hamesha khush aur ek dosray ka sahara banaye."}
 };
 
-function type(el,text,speed=70){
+function type(el,text){
  let i=0;
- let t=setInterval(()=>{
+ let s=setInterval(()=>{
   el.textContent+=text[i++]||"";
-  if(i>text.length) clearInterval(t);
- },speed);
+  if(i>text.length) clearInterval(s);
+ },60);
 }
 
 function startTyping(p){
- let data=texts[p];
- if(!data) return;
-
- if(Array.isArray(data)){
-  let d=0;
-  data.forEach(o=>{
-   let el=document.getElementById(o.id);
-   if(el.dataset.done) return;
-   el.dataset.done=1;
-   setTimeout(()=>type(el,o.text),d);
-   d+=o.text.length*80;
+ let d=texts[p];
+ if(!d) return;
+ if(Array.isArray(d)){
+  let delay=0;
+  d.forEach(o=>{
+   let e=document.getElementById(o.id);
+   if(e.dataset.done) return;
+   e.dataset.done=1;
+   setTimeout(()=>type(e,o.text),delay);
+   delay+=o.text.length*70;
   });
  }else{
-  let el=document.getElementById(data.id);
-  if(el.dataset.done) return;
-  el.dataset.done=1;
-  type(el,data.text);
+  let e=document.getElementById(d.id);
+  if(e.dataset.done) return;
+  e.dataset.done=1;
+  type(e,d.text);
  }
 }
 
 /* STARS */
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-let stars=[...Array(150)].map(()=>({
- x:Math.random()*canvas.width,
- y:Math.random()*canvas.height,
+const cns=stars,ctx=cns.getContext("2d");
+cns.width=innerWidth;cns.height=innerHeight;
+let arr=[...Array(160)].map(()=>({
+ x:Math.random()*cns.width,
+ y:Math.random()*cns.height,
  r:Math.random()*1.5,
- s:Math.random()*0.3+0.1
+ s:Math.random()*0.4+0.1
 }));
-function animate(){
- ctx.clearRect(0,0,canvas.width,canvas.height);
+(function anim(){
+ ctx.clearRect(0,0,cns.width,cns.height);
  ctx.fillStyle="white";
- stars.forEach(st=>{
+ arr.forEach(a=>{
   ctx.beginPath();
-  ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+  ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
   ctx.fill();
-  st.y+=st.s;
-  if(st.y>canvas.height) st.y=0;
+  a.y+=a.s;if(a.y>cns.height)a.y=0;
  });
- requestAnimationFrame(animate);
-}
-animate();
+ requestAnimationFrame(anim);
+})();
 </script>
 
 </body>
