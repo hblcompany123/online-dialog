@@ -3,129 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary | Ibrat & Waqas</title>
+<title>Happy Anniversary</title>
 
 <style>
-    :root {
-        --primary: #ff4d6d;
-        --secondary: #ff8fa3;
-        --bg: #0a0a0a;
-    }
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:black;color:white;overflow:hidden}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', 'Segoe UI', sans-serif; }
-    
-    body { 
-        background: var(--bg); 
-        color: white; 
-        overflow: hidden; 
-        height: 100vh;
-    }
+/* STARS */
+canvas{
+ position:fixed;
+ top:0;left:0;
+ width:100%;height:100%;
+ z-index:-1;
+}
 
-    canvas {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: -1;
-    }
+/* PAGES */
+.page{
+ display:none;
+ height:100vh;
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+ text-align:center;
+ padding:20px;
+}
+.page.active{display:flex}
 
-    .page {
-        display: none;
-        height: 100vh;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-        position: absolute;
-        transition: all 0.8s ease-in-out;
-    }
+.count{font-size:80px;color:#ff4d6d}
 
-    .page.active { display: flex; animation: fadeIn 1s forwards; }
+button{
+ margin-top:30px;
+ padding:12px 35px;
+ border:none;
+ border-radius:25px;
+ background:#ff4d6d;
+ color:white;
+ font-size:16px;
+ cursor:pointer;
+}
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
+/* FIRST PAGE DESIGN */
+.zoom-name{
+ font-size:45px;
+ color:#ff4d6d;
+ animation:zoomIn 2s ease forwards;
+ transform:scale(0);
+}
 
-    /* Countdown Styling */
-    .count {
-        font-size: 120px;
-        font-weight: bold;
-        color: var(--primary);
-        text-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
-        animation: pulse 1s infinite;
-    }
+@keyframes zoomIn{
+ to{transform:scale(1.3)}
+}
 
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
+.emoji{
+ font-size:30px;
+ margin-bottom:15px;
+ animation:fade 2s;
+}
 
-    .title {
-        font-size: 45px;
-        background: linear-gradient(to right, #ff4d6d, #fff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-        filter: drop-shadow(0 0 10px rgba(255,77,109,0.5));
-    }
+@keyframes fade{
+ from{opacity:0}
+ to{opacity:1}
+}
 
-    p { font-size: 18px; color: #ccc; letter-spacing: 1px; }
+/* FLOWERS */
+.flower{
+ position:absolute;
+ font-size:30px;
+ animation:rotate 6s linear infinite;
+}
+@keyframes rotate{
+ from{transform:rotate(0deg)}
+ to{transform:rotate(360deg)}
+}
+.tl{top:15px;left:15px}
+.tr{top:15px;right:15px}
+.bl{bottom:15px;left:15px}
+.br{bottom:15px;right:15px}
 
-    button {
-        margin-top: 40px;
-        padding: 15px 45px;
-        border: 2px solid var(--primary);
-        border-radius: 50px;
-        background: transparent;
-        color: white;
-        font-size: 18px;
-        cursor: pointer;
-        transition: 0.3s;
-        box-shadow: 0 0 15px var(--primary);
-    }
-
-    button:hover {
-        background: var(--primary);
-        transform: translateY(-5px);
-        box-shadow: 0 0 30px var(--primary);
-    }
-
-    /* Airplane Animation Improved */
-    .plane-container {
-        position: absolute;
-        width: 100%;
-        top: 30%;
-        pointer-events: none;
-    }
-
-    .plane {
-        font-size: 80px;
-        position: absolute;
-        left: -150px;
-        animation: flySmooth 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-
-    @keyframes flySmooth {
-        0% { left: -150px; transform: rotate(0deg); }
-        50% { transform: rotate(-10deg); }
-        100% { left: 110%; transform: rotate(0deg); }
-    }
-
-    /* Floating Hearts Decoration */
-    .heart-deco {
-        color: var(--primary);
-        font-size: 40px;
-        margin-bottom: 20px;
-        animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+/* TITLES */
+.title{
+ font-size:38px;
+ color:#ff4d6d;
+ margin-bottom:15px;
+}
+.text{
+ max-width:700px;
+ line-height:1.8;
+}
 </style>
 </head>
 
@@ -133,126 +97,117 @@
 
 <canvas id="stars"></canvas>
 
+<!-- PAGE 1 COUNTDOWN -->
 <div class="page active" id="p1">
-    <div class="count" id="count">5</div>
-    <p>Get ready for a surprise...</p>
+ <div class="count" id="count">5</div>
 </div>
 
+<!-- PAGE 2 NAME -->
 <div class="page" id="p2">
-    <div class="plane-container">
-        <div class="plane">✈️❤️</div>
-    </div>
-    <div class="heart-deco">❤</div>
-    <div class="title">Ibrat & Waqas</div>
-    <p>Two Souls, One Heart</p>
-    <button onclick="go(3)">Enter the Love</button>
+
+ <div class="flower tl">🌸</div>
+ <div class="flower tr">🌸</div>
+ <div class="flower bl">🌸</div>
+ <div class="flower br">🌸</div>
+
+ <div class="emoji">💖 💍 💖</div>
+ <div class="zoom-name">Ibrat ❤️ Waqas</div>
+
+ <button onclick="go(3)">Next</button>
 </div>
 
+<!-- PAGE 3 -->
 <div class="page" id="p3">
-    <div class="title">Happy Anniversary! 💖</div>
-    <p id="typewriter"></p>
-    <button onclick="go(4)">Special Memory</button>
+ <div class="title">Happy Anniversary 💖</div>
+ <div class="text">Together is the most beautiful place to be.</div>
+ <button onclick="go(4)">Next</button>
 </div>
 
+<!-- PAGE 4 -->
 <div class="page" id="p4">
-    <div class="heart-deco">✨</div>
-    <div class="title">5th Jan – The Beginning</div>
-    <p>"Some meetings change life forever..."</p>
-    <button onclick="restart()">See Again</button>
+ <div class="title">Date 5 – First Meet</div>
+ <div class="text">Some meetings silently change everything.</div>
+ <button onclick="go(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+ <div class="title">Date 6 – Friendship</div>
+ <div class="text">Trust, comfort and understanding began here.</div>
+ <button onclick="go(6)">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+ <div class="title">Date 13 – Purpose Day ⭐</div>
+ <div class="text">
+ This day gave meaning, responsibility and a beautiful reason.
+ </div>
+ <button onclick="go(7)">Next</button>
+</div>
+
+<!-- PAGE 7 EMPTY -->
+<div class="page" id="p7">
+ <button onclick="go(8)">Next</button>
+</div>
+
+<!-- PAGE 8 EMPTY -->
+<div class="page" id="p8">
+ <button onclick="go(9)">Next</button>
+</div>
+
+<!-- PAGE 9 EMPTY -->
+<div class="page" id="p9">
+ <div class="title">💖</div>
 </div>
 
 <script>
-    function go(n) {
-        document.querySelectorAll('.page').forEach(p => {
-            p.classList.remove('active');
-            p.style.opacity = "0";
-        });
-        const next = document.getElementById("p" + n);
-        next.classList.add('active');
-        next.style.opacity = "1";
+/* PAGE CONTROL */
+function go(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById("p"+n).classList.add('active');
+}
 
-        if(n === 3) startTypewriter();
-    }
+/* COUNTDOWN */
+let c=5;
+let timer=setInterval(()=>{
+ document.getElementById("count").innerText=c;
+ c--;
+ if(c===0){
+  clearInterval(timer);
+  setTimeout(()=>go(2),1000);
+ }
+},1000);
 
-    function restart() { location.reload(); }
+/* STARS BG */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
 
-    // Countdown Logic
-    let c = 5;
-    let timer = setInterval(() => {
-        c--;
-        document.getElementById("count").innerText = c;
-        if (c === 0) {
-            clearInterval(timer);
-            setTimeout(() => go(2), 800);
-        }
-    }, 1000);
+let stars=[];
+for(let i=0;i<150;i++){
+ stars.push({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.5,
+  s:Math.random()*0.3+0.1
+ });
+}
 
-    // Typewriter Effect
-    function startTypewriter() {
-        const text = "Together is the best place to be. Every day with you is a blessing.";
-        let i = 0;
-        const el = document.getElementById("typewriter");
-        el.innerText = "";
-        function type() {
-            if (i < text.length) {
-                el.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 50);
-            }
-        }
-        type();
-    }
-
-    // Advanced Star & Heart Background
-    const canvas = document.getElementById("stars");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particles = [];
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.color = Math.random() > 0.8 ? "#ff4d6d" : "white";
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x > canvas.width) this.x = 0;
-            if (this.x < 0) this.x = canvas.width;
-            if (this.y > canvas.height) this.y = 0;
-            if (this.y < 0) this.y = canvas.height;
-        }
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    for (let i = 0; i < 200; i++) {
-        particles.push(new Particle());
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animate);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
+function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle="white";
+ stars.forEach(st=>{
+  ctx.beginPath();
+  ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+  ctx.fill();
+  st.y+=st.s;
+  if(st.y>canvas.height) st.y=0;
+ });
+ requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
