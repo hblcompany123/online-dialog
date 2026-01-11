@@ -6,115 +6,162 @@
 <title>Ibrat ❤️ Waqas</title>
 
 <style>
-body{
-    margin:0;
-    background:black;
-    overflow:hidden;
-    font-family:Segoe UI,sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+body{background:black;color:white;overflow:hidden;}
 
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
-}
-
-#name3d{
-    position:absolute;
-    top:40%;
+.page{
+    display:none;
+    height:100vh;
     width:100%;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
     text-align:center;
-    font-size:55px;
-    color:#ff4d6d;
-    font-weight:bold;
-    opacity:0;
-    transform:scale(0.2) rotateX(70deg);
-    transition:1.2s ease;
-    text-shadow:
-        0 5px 0 #c9184a,
-        0 10px 20px rgba(255,77,109,0.6);
+    padding:20px;
+}
+.page.active{display:flex;}
+
+button{
+    margin-top:30px;
+    padding:12px 35px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
 
-#name3d.show{
+.title{
+    font-size:40px;
+    color:#ff4d6d;
+}
+
+.text{
+    max-width:750px;
+    font-size:18px;
+    line-height:1.8;
+    margin-top:20px;
+}
+
+#heartName{
+    font-size:55px;
+    opacity:0;
+    transform:scale(0.3);
+    transition:1.2s ease;
+}
+#heartName.show{
     opacity:1;
-    transform:scale(1) rotateX(0deg);
+    transform:scale(1);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="c"></canvas>
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+    <div class="title">Just a Moment…</div>
+</div>
 
-<div id="name3d">
-    IBRAT ❤️ WAQAS <br>
-    Happy Anniversary
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+    <div id="heartName">
+        IBRAT ❤️ WAQAS <br>
+        Happy Anniversary
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+    <div class="title">Date 5</div>
+    <div class="text">
+        The day we first met.  
+        A simple moment that silently changed the direction of life.
+    </div>
+    <button onclick="go(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+    <div class="title">Date 6</div>
+    <div class="text">
+        Friendship was born here.  
+        Trust, laughter and understanding slowly found their place.
+    </div>
+    <button onclick="go(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+    <div class="title">The Journey</div>
+    <div class="text">
+        From conversations to connections,  
+        every step taught patience, respect and care.
+    </div>
+    <button onclick="go(6)">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+    <div class="title">Date 13 – Purpose Day ⭐</div>
+    <div class="text">
+        This day gave meaning.  
+        A reason to grow, to protect, and to walk with responsibility.
+    </div>
+    <button onclick="go(7)">Next</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+    <div class="title">Why Date 13 Is Special</div>
+    <div class="text">
+        Because it is not just a date.  
+        It represents intention, respect, and the strength of commitment.
+    </div>
+    <button onclick="go(8)">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+    <div class="title">Khushiyan & Duaein 🤲</div>
+    <div class="text">
+        May every coming day bring peace, understanding and happiness.  
+        May hearts remain soft, intentions remain pure,  
+        and every difficulty turn into wisdom.  
+        May respect always stay above everything else.
+    </div>
+    <button onclick="go(9)">Next</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+    <div class="title">A Promise</div>
+    <div class="text">
+        To walk together with honesty,  
+        to protect each other’s dignity,  
+        and to value this bond with patience and prayer.
+    </div>
+    <button onclick="go(10)">Next</button>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="p10">
+    <div class="title">Always Together 🤍</div>
+    <div class="text">
+        Not just in happiness,  
+        but in growth, understanding and respect.
+    </div>
 </div>
 
 <script>
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d");
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-let jet = {x:-100, y:canvas.height/2, speed:14};
-let sparks = [];
-let exploded = false;
-let start = false;
-
-// start after 1 sec
-setTimeout(()=> start = true,1000);
-
-function explode(x,y){
-    for(let i=0;i<180;i++){
-        sparks.push({
-            x,y,
-            vx:(Math.random()-0.5)*10,
-            vy:(Math.random()-0.5)*10,
-            life:80
-        });
-    }
+function go(n){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById("p"+n).classList.add('active');
 }
 
-function animate(){
-    ctx.fillStyle="rgba(0,0,0,0.25)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    if(start && !exploded){
-        // jet body
-        ctx.fillStyle="white";
-        ctx.fillRect(jet.x, jet.y, 40, 4);
-
-        // jet wind trail
-        ctx.fillStyle="rgba(255,255,255,0.4)";
-        ctx.fillRect(jet.x-20, jet.y, 20, 2);
-
-        jet.x += jet.speed;
-
-        if(jet.x > canvas.width/2){
-            exploded = true;
-            explode(jet.x,jet.y);
-            document.getElementById("name3d").classList.add("show");
-        }
-    }
-
-    sparks.forEach((p,i)=>{
-        ctx.fillStyle="orange";
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,2,0,Math.PI*2);
-        ctx.fill();
-
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.05;
-        p.life--;
-
-        if(p.life<=0) sparks.splice(i,1);
-    });
-
-    requestAnimationFrame(animate);
-}
-animate();
+// auto flow
+setTimeout(()=>{go(2);document.getElementById("heartName").classList.add("show")},5000);
 </script>
 
 </body>
