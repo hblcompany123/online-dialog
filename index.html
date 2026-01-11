@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary</title>
+<title>Anniversary</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
 body{background:black;color:white;overflow:hidden}
 
-/* STARS */
 canvas{
  position:fixed;
  top:0;left:0;
@@ -17,44 +16,41 @@ canvas{
  z-index:-1;
 }
 
-/* PAGES */
 .page{
  display:none;
  height:100vh;
- padding:20px;
- text-align:center;
  justify-content:center;
  align-items:center;
  flex-direction:column;
+ text-align:center;
 }
 .page.active{display:flex}
 
-.count{
- font-size:90px;
- color:#ff4d6d;
-}
+.count{font-size:80px;color:#ff4d6d}
 
-.title{
- font-size:42px;
- color:#ff4d6d;
- margin-bottom:20px;
-}
-
-.text{
- max-width:750px;
- font-size:18px;
- line-height:1.8;
-}
+.title{font-size:40px;color:#ff4d6d;margin-top:20px}
 
 button{
  margin-top:30px;
  padding:12px 35px;
  border:none;
- border-radius:30px;
+ border-radius:25px;
  background:#ff4d6d;
  color:white;
  font-size:16px;
- cursor:pointer;
+}
+
+/* AIRPLANE */
+.plane{
+ position:absolute;
+ left:-150px;
+ top:40%;
+ font-size:60px;
+ animation:fly 3s linear forwards;
+}
+
+@keyframes fly{
+ to{left:110%}
 }
 </style>
 </head>
@@ -63,92 +59,74 @@ button{
 
 <canvas id="stars"></canvas>
 
-<!-- PAGE 1 COUNTDOWN -->
+<!-- PAGE 1 -->
 <div class="page active" id="p1">
  <div class="count" id="count">5</div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="p2">
- <div class="title">Happy Anniversary 💖</div>
- <div class="text">Ibrat ❤️ Waqas</div>
+ <div class="plane">✈️</div>
+ <div class="title">Ibrat ❤️ Waqas</div>
  <button onclick="go(3)">Next</button>
 </div>
 
 <!-- PAGE 3 -->
 <div class="page" id="p3">
- <div class="title">Date 5 – First Meet</div>
- <div class="text">
- Some meetings silently change everything.
- </div>
+ <div class="title">Happy Anniversary 💖</div>
+ <p>Together is the best place to be</p>
  <button onclick="go(4)">Next</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="p4">
- <div class="title">Date 6 – Friendship</div>
- <div class="text">
- Trust, comfort and understanding began here.
- </div>
- <button onclick="go(5)">Next</button>
-</div>
-
-<!-- PAGE 5 -->
-<div class="page" id="p5">
- <div class="title">Date 13 – Purpose Day ⭐</div>
- <div class="text">
- This day is special because it gave meaning,
- responsibility and direction.
- </div>
+ <div class="title">Date 5 – First Meet</div>
+ <p>Some meetings change life forever</p>
 </div>
 
 <script>
-/* PAGE CONTROL */
 function go(n){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  document.getElementById("p"+n).classList.add('active');
 }
 
-/* COUNTDOWN */
+/* COUNTDOWN FIXED */
 let c=5;
 let timer=setInterval(()=>{
  document.getElementById("count").innerText=c;
  c--;
- if(c<0){
+ if(c===0){
   clearInterval(timer);
-  go(2);
+  setTimeout(()=>go(2),1000);
  }
 },1000);
 
-/* STARS BG */
+/* STARS */
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 canvas.width=innerWidth;
 canvas.height=innerHeight;
 
 let stars=[];
-for(let i=0;i<120;i++){
+for(let i=0;i<150;i++){
  stars.push({
   x:Math.random()*canvas.width,
   y:Math.random()*canvas.height,
-  r:Math.random()*1.5,
-  s:Math.random()*0.5+0.2
+  r:Math.random()*1.5
  });
 }
 
-function animateStars(){
+function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);
  ctx.fillStyle="white";
- stars.forEach(st=>{
+ stars.forEach(s=>{
   ctx.beginPath();
-  ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
+  ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
   ctx.fill();
-  st.y+=st.s;
-  if(st.y>canvas.height) st.y=0;
  });
- requestAnimationFrame(animateStars);
+ requestAnimationFrame(draw);
 }
-animateStars();
+draw();
 </script>
 
 </body>
