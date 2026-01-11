@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ibrat ❤️ Waqas</title>
+<title>Happy Anniversary</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
-body{background:#000;overflow:hidden;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+body{background:black;color:white;overflow:hidden}
 
-/* WATER BACKGROUND */
+/* STARS */
 canvas{
  position:fixed;
  top:0;left:0;
  width:100%;height:100%;
- z-index:-2;
+ z-index:-1;
 }
 
 /* PAGES */
@@ -26,20 +26,24 @@ canvas{
  justify-content:center;
  align-items:center;
  flex-direction:column;
- backdrop-filter: blur(2px);
 }
 .page.active{display:flex}
 
+.count{
+ font-size:90px;
+ color:#ff4d6d;
+}
+
 .title{
  font-size:42px;
- color:#ff5f9e;
- text-shadow:0 0 20px rgba(255,95,158,.7);
+ color:#ff4d6d;
+ margin-bottom:20px;
 }
+
 .text{
- max-width:780px;
+ max-width:750px;
  font-size:18px;
- line-height:1.9;
- margin-top:20px;
+ line-height:1.8;
 }
 
 button{
@@ -47,156 +51,104 @@ button{
  padding:12px 35px;
  border:none;
  border-radius:30px;
- background:#ff5f9e;
+ background:#ff4d6d;
  color:white;
  font-size:16px;
  cursor:pointer;
-}
-
-/* 3D NAME */
-#name3d{
- font-size:55px;
- transform:rotateX(60deg) scale(0.3);
- opacity:0;
- transition:1.5s ease;
- text-shadow:
- 0 5px 0 #c9184a,
- 0 10px 25px rgba(255,95,158,.8);
-}
-#name3d.show{
- opacity:1;
- transform:rotateX(0deg) scale(1);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="bg"></canvas>
+<canvas id="stars"></canvas>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 COUNTDOWN -->
 <div class="page active" id="p1">
- <div class="title">Just a Moment…</div>
- <div class="text">The ocean is calm… something meaningful is coming</div>
+ <div class="count" id="count">5</div>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="p2">
- <div id="name3d">
- IBRAT ❤️ WAQAS<br>
- Happy Anniversary
- </div>
+ <div class="title">Happy Anniversary 💖</div>
+ <div class="text">Ibrat ❤️ Waqas</div>
+ <button onclick="go(3)">Next</button>
 </div>
 
-<!-- MEMORY PAGES -->
+<!-- PAGE 3 -->
 <div class="page" id="p3">
  <div class="title">Date 5 – First Meet</div>
  <div class="text">
- Some meetings are silent, yet they change everything.
+ Some meetings silently change everything.
  </div>
  <button onclick="go(4)">Next</button>
 </div>
 
+<!-- PAGE 4 -->
 <div class="page" id="p4">
  <div class="title">Date 6 – Friendship</div>
  <div class="text">
- Trust slowly grew, conversations felt natural,
- and comfort found its place.
+ Trust, comfort and understanding began here.
  </div>
  <button onclick="go(5)">Next</button>
 </div>
 
+<!-- PAGE 5 -->
 <div class="page" id="p5">
- <div class="title">The Journey</div>
- <div class="text">
- Between moments and memories,
- patience and respect became the foundation.
- </div>
- <button onclick="go(6)">Next</button>
-</div>
-
-<div class="page" id="p6">
  <div class="title">Date 13 – Purpose Day ⭐</div>
  <div class="text">
- This day gave direction.
- Not excitement, but responsibility and meaning.
- </div>
- <button onclick="go(7)">Next</button>
-</div>
-
-<div class="page" id="p7">
- <div class="title">Why Date 13 Matters</div>
- <div class="text">
- Because purpose is stronger than emotions.
- It stays even when waves rise.
- </div>
- <button onclick="go(8)">Next</button>
-</div>
-
-<div class="page" id="p8">
- <div class="title">Khushiyan & Duaein 🤲</div>
- <div class="text">
- May peace remain between hearts.
- May respect protect this bond.
- May every difficulty turn into wisdom.
- </div>
- <button onclick="go(9)">Next</button>
-</div>
-
-<div class="page" id="p9">
- <div class="title">A Promise</div>
- <div class="text">
- To walk forward with honesty,
- patience, and dignity.
- </div>
- <button onclick="go(10)">Next</button>
-</div>
-
-<div class="page" id="p10">
- <div class="title">Always Together</div>
- <div class="text">
- Like water and depth — calm, strong, endless.
+ This day is special because it gave meaning,
+ responsibility and direction.
  </div>
 </div>
 
 <script>
-// PAGE CONTROL
+/* PAGE CONTROL */
 function go(n){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById('p'+n).classList.add('active');
+ document.getElementById("p"+n).classList.add('active');
 }
 
-// AUTO FLOW
-setTimeout(()=>{
- go(2);
- document.getElementById('name3d').classList.add('show');
-},5000);
+/* COUNTDOWN */
+let c=5;
+let timer=setInterval(()=>{
+ document.getElementById("count").innerText=c;
+ c--;
+ if(c<0){
+  clearInterval(timer);
+  go(2);
+ }
+},1000);
 
-// WATER + FISH BACKGROUND
-const c=document.getElementById("bg"),ctx=c.getContext("2d");
-c.width=innerWidth;c.height=innerHeight;
-let fishes=[];
-for(let i=0;i<25;i++){
- fishes.push({
-  x:Math.random()*c.width,
-  y:Math.random()*c.height,
-  s:Math.random()*1+0.5
+/* STARS BG */
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+let stars=[];
+for(let i=0;i<120;i++){
+ stars.push({
+  x:Math.random()*canvas.width,
+  y:Math.random()*canvas.height,
+  r:Math.random()*1.5,
+  s:Math.random()*0.5+0.2
  });
 }
-function draw(){
- ctx.fillStyle="rgba(0,10,30,0.3)";
- ctx.fillRect(0,0,c.width,c.height);
- fishes.forEach(f=>{
-  ctx.fillStyle="rgba(255,255,255,0.8)";
+
+function animateStars(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.fillStyle="white";
+ stars.forEach(st=>{
   ctx.beginPath();
-  ctx.ellipse(f.x,f.y,6,3,0,0,Math.PI*2);
+  ctx.arc(st.x,st.y,st.r,0,Math.PI*2);
   ctx.fill();
-  f.x+=f.s;
-  if(f.x>c.width) f.x=0;
+  st.y+=st.s;
+  if(st.y>canvas.height) st.y=0;
  });
- requestAnimationFrame(draw);
+ requestAnimationFrame(animateStars);
 }
-draw();
+animateStars();
 </script>
 
 </body>
