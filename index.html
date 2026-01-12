@@ -94,12 +94,12 @@ button{
 
 <canvas id="stars"></canvas>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1 COUNTDOWN -->
 <div class="page active" id="p1">
  <div class="count" id="count">5</div>
 </div>
 
-<!-- PAGE 2 -->
+<!-- PAGE 2 NAME -->
 <div class="page" id="p2">
  <div class="flower tl">🌸</div><div class="flower tr">🌸</div>
  <div class="flower bl">🌸</div><div class="flower br">🌸</div>
@@ -108,8 +108,111 @@ button{
  <button onclick="go(3)">Next</button>
 </div>
 
-<!-- ALL PAGES SAME AS YOU GAVE (NO CHANGE) -->
-<!-- ONLY SCRIPT FIXED BELOW -->
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+ <div class="title cursor" id="type3t"></div>
+ <div class="text cursor" id="type3"></div>
+ <button onclick="go(4)">Next</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+ <div class="title">Date 4 – First Meet</div>
+ <div class="text cursor" id="type4"></div>
+ <button onclick="go(5)">Next</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+ <div class="title">Date 6 – Friendship</div>
+ <div class="text cursor" id="type5"></div>
+ <button onclick="go(6)">Next</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+ <div class="title">Date 13 – Purpose Day ⭐</div>
+ <div class="text cursor" id="type6"></div>
+ <button onclick="go(7)">Next</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+ <div class="title">Memories 🌸</div>
+ <div class="text cursor" id="type7"></div>
+ <button onclick="go(8)">Next</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+ <div class="title">Promises 🤍</div>
+ <div class="text cursor" id="type8"></div>
+ <button onclick="go(9)">Next</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+ <div class="title">Ups & Downs</div>
+ <div class="text cursor" id="type9"></div>
+ <button onclick="go(10)">Next</button>
+</div>
+
+<!-- PAGE 10 -->
+<div class="page" id="p10">
+ <div class="title">Support 🫶</div>
+ <div class="text cursor" id="type10"></div>
+ <button onclick="go(11)">Next</button>
+</div>
+
+<!-- PAGE 11 -->
+<div class="page" id="p11">
+ <div class="title">Trust</div>
+ <div class="text cursor" id="type11"></div>
+ <button onclick="go(12)">Next</button>
+</div>
+
+<!-- PAGE 12 -->
+<div class="page" id="p12">
+ <div class="title">Love Grows 💖</div>
+ <div class="text cursor" id="type12"></div>
+ <button onclick="go(13)">Next</button>
+</div>
+
+<!-- PAGE 13 -->
+<div class="page" id="p13">
+ <div class="title">Forever ♾️</div>
+ <div class="text cursor" id="type13"></div>
+ <button onclick="go(14)">Next</button>
+</div>
+
+<!-- PAGE 14 -->
+<div class="page" id="p14">
+ <div class="title">My Dua 🤲</div>
+ <div class="text cursor" id="type14"></div>
+ <button onclick="go(15)">Next</button>
+</div>
+
+<!-- PAGE 15 -->
+<div class="page" id="p15">
+ <div class="title">My Dua 🤲</div>
+ <div class="text cursor" id="type15"></div>
+ <button onclick="go(16)">Next</button>
+</div>
+<div class="page" id="p16">
+ <div class="title">💓💓💓💓💓</div>
+ <div class="text cursor" id="type16"></div>
+ <button onclick="go(17)">Next</button>
+</div>
+<div class="page" id="p17">
+ <div class="title">💓💓💓</div>
+ <div class="text cursor" id="type17"></div>
+ <button onclick="go(18)">Next</button>
+</div>
+<!-- PAGE 18 -->
+<div class="page" id="p18">
+ <div class="emoji">💖 💖 💖</div>
+ <div class="title">Always You meri jannnnnn fiza</div>
+</div>
 
 <script>
 function go(n){
@@ -128,30 +231,148 @@ let t=setInterval(()=>{
 
 /* TEXT DATA */
 const texts={
-2:{id:"typeName",text:`Fiza  Waqas`},
+2:{
+ id:"typeName",
+ text:"Fiza  Waqas"
+},
 
 3:[
- {id:"type3t",text:`Happy Anniversary Meri jan  Meri zondgi
-Ma an nitny tareeef kron apky liya kam hai butt ap ho meri jan samjh jao gi ky kitni tarif krny wala hon ma jannnnnnnn Love you very much 💖`},
- {id:"type3",text:`Saath hona sirf qareeb rehna nahi hota… saath hona wo ehsaas hota hai jahan lafzon ki zarurat nahi rehti...`}
+ {
+  id:"type3t",
+  text:"Happy Anniversary Meri jan  Meri zondgi
+  Ma an nitny tareeef kron apky liya kam hai butt ap ho meri jan samjh jao gi ky kitni tarif krny wala hon ma jannnnnnnn Love you very much 💖"
+ },
+ {
+  id:"type3",
+  text:"Saath hona sirf qareeb rehna nahi hota… saath hona wo ehsaas hota hai jahan lafzon ki zarurat nahi rehti, jahan khamoshi bhi sukoon ban jaati hai. Saath hona wo jagah hai jahan dil bina dar ke dhadakta hai, jahan insaan khud ko mehfooz, mukammal aur apna mehsoos karta ha sath rhaina ya ni ky lafzon sy biyan kiya jai sath rhaina to ya ky khamoshi sy bhi apky samjh jain sath rhaina or sath nibhana dono lafz to alag hai but inka maqsad ak hi haj jo piyar ky liya hai sathh ma jb bhi apky huwa hon mujy alag hi suqun mila hai jis din apko mera door jany sy ghabarat ho rhi thi usy kheti hi lafz ky begair btaiya jany wala piyar sath inshallah Akhir tak sath hi rhy gy ham donk ."
+}
 ],
 
-4:{id:"type4",text:`Wo pehla din jab apki aankhon ne 🫴👀 mere dil se baat ki…`},
-5:{id:"type5",text:`Jab mujhe ap pasand aayi thi...`},
-6:{id:"type6",text:`Date 13 wo din hai...`},
-7:{id:"type7",text:`Har choti baat...`},
-8:{id:"type8",text:`Main ne har wada ap se...`},
-9:{id:"type9",text:`Mushkilein aayi...`},
-10:{id:"type10",text:`Apka saath meri sab se bari taqat hai...`},
-11:{id:"type11",text:`Bharosa wo bunyaad hai...`},
-12:{id:"type12",text:`Waqt ke saath mohabbat kam nahi hui...`},
-13:{id:"type13",text:`Forever ka matlab sirf ek lafz nahi hota...`},
-14:{id:"type14",text:`Ya Allah… Tu hum dono ko apni hifazat mein rakhna...`},
-15:{id:"type15",text:`jan Apko yadd hi jb phaili dafa...`},
-16:{id:"type16",text:`Meri Galat tariky sy bat krny ky liya...
-SORRY SORRY SORRY...`},
-17:{id:"type17",text:`I LOVE YOU SOO MUCH MERI JAAN
-I LOVE YOU SOO MUCH MERI JAAN`}
+4:{
+ id:"type4",
+ text:"Wo pehla din jab apki aankhon ne 🫴👀 mere dil se baat ki… mujhe us din ka har pal aaj bhi yaad hai. Wo ek nazar, wo ek ehsaas, jis ne meri poori zindagi ka rukh badal diya. Us din mujhe pata bhi nahi tha ke main apni zindagi ka sab se khoobsurat safar shuru kar raha hoon. Aaj hum yahan tak pohanch chukay hain—kabhi hansi, kabhi aansu, kabhi larai, kabhi mananay ke lamhay… lekin har dafa ek doosray ko aur zyada apna banaya. 1 saal complete ho gaya meri jaan ❤️😍 aur ye sirf shuruat hai."
+},
+
+5:{
+ id:"type5",
+ text:"Jab mujhe ap pasand aayi thi, uske bilkul aglay din ap meri dost ban gayi. Shayad us waqt hum dono ko andaza nahi tha ke ye dosti ek din meri zindagi ka sab se qeemti rishta ban jaayegi. TikTok ke zariye shuru hone wali baat, aaj mere dil ki sab se gehri baat ban chuki hai."
+},
+
+6:{
+ id:"type6",
+ text:"Date 13 wo din hai jo meri zindagi mein sirf ek tareekh nahi, balkay ek pehchaan ban kar aaya. Is din ne mujhe zindagi ka maqsad diya, mujhe zimmedari ka ehsaas dilaya, aur mujhe sikhaya ke kisi ka hona kitni badi rehmat hoti hai. Ye din meri rooh ka hissa hai, aur hamesha rahega."
+},
+
+7:{
+ id:"type7",
+ text:"Har choti baat, har muskurahat, har narazgi, har sulah… sab kuch yaadon ka ek aisa khoobsurat silsila ban gaya hai jo waqt ke saath aur bhi qeemti hota ja raha hai. Har yaad mein sirf tum ho."
+},
+
+8:{
+ id:"type8",
+ text:"Main ne har wada ap se apne dil se kiya hai. Na kabhi jhoota wada kiya, na kabhi kisi wada ko halka samjha. Shayad main apna pyaar lafzon mein achi tarah bayan na kar paon, lekin mera dil gawah hai ke mera har wada sirf aur sirf tumhare liye hai."
+},
+
+9:{
+ id:"type9",
+ text:"Mushkilein aayi, dard bhi hua, kabhi zindagi ne sakht imtihaan liya… lekin hum ne kabhi ek doosray ka saath nahi chhoda. Shayad isi ka naam sachi mohabbat hota hai—jo mushkil waqt mein aur zyada mazboot ho jaati hai."
+},
+
+10:{
+ id:"type10",
+ text:"Apka saath meri sab se bari taqat hai. Jab ap paas hoti ho, to zindagi ke bojh halka ho jaata hai. Apki muskurahat mere liye himmat ban jaati hai, aur apka hona meri zindagi ka sab se bada sukoon hai."
+},
+
+11:{
+ id:"type11",
+ text:"Bharosa wo bunyaad hai jis par humara rishta khara hai. Ap par bharosa karna meri zindagi ka sab se khoobsurat faisla tha.or hai  Main janta hoon ke jab tak ap mere saath ho, main kabhi tanha nahi ho sakta."
+},
+
+12:{
+ id:"type12",
+ text:"Waqt ke saath mohabbat kam nahi hui… balkay aur gehri, aur zyada sacchi hoti chali gayi. Shayad main apna pyaar hamesha zahir na kar paon, majbooriyan aa jaati hain, mushkil waqt aa jata hai… lekin mera dil sirf apka hai. Bas dua hai ke ye bura waqt guzar jaaye 🥺 Vs Mujy is bat ky liya Maf krna ky Ma ab apko apni mohabbat sahi sy ni dy pa raha kam ki wakha sy inshallah kuch dino ma dubara don ga Ap ko Khish dakhon ga Ap udass mujy Achi ni lagti Ap Khushh ho kr bat kro or mery na hony pr khush ho tb ma suqun pa sako ga aisi udaasi apki mera suqun ni buntuu jannn meri zindg,✨."
+},
+
+13:{
+ id:"type13",
+ text:"Forever ka matlab sirf ek lafz nahi hota… forever ka matlab wo har subah hai jo apky saath ho, wo har dua hai jo apky liye ho, wo har khwab hai jo apsy jud kar dekha ho. Forever ka matlab sirf ap ho. ho har waqt hi ap ho Forver ka mtlb airf ap na koi dusraa Sirf Fiza ap hoo meru zindgi ka suqun meri mohabbat ."
+},
+
+14:{
+ id:"type14",
+ text:"Ya Allah… Tu hum dono ko apni hifazat mein rakhna. Humare dilon ko ek doosray ke liye naram rakhna. Jab zindagi mushkil ho jaaye to humein sabr dena، jab khushi aaye to shukar ada karna sikha dena. Humare rishte ko buri nazar se, ghalat fahmiyon se, aur har takleef se mehfooz rakhna. Humein ek doosray ka sukoon, taqat aur rehmat bana dena. Ya Allah, jab hum kamzor ho jaayein to humein ek doosray ka sahara bana dena. hamy har buri nazar sy bachaa hamara piyar ak dusry ka sahara hoo hamesha jitni laraiya hon un sy zaida ham ma piyar hoo  Ya Allah pak ham dono ko idr tk laiya to hai ab agy bhi kuch hi safar hi bs bs hamara wo bhi pura kra dy taky ham khush rhy ak sath ya Allah pak mery ghar waly bhi man jai please is rishty ky liyaa ya Allah pak mainy Fiza ko manga hi ap sy ab mujy chai hai ab mujy uski muskurat ho har waqt us ki khushi har waq usky dill ka suwun har waqt usy bimaraiyo sy pak ma ni dakh sakta ya Allah pak usy Bimar ya Allah pak usy har bimari sy shifa ata farma Ameen 🤲"
+},
+15:{
+ id:"type15",
+ text:" jan Apko yadd hi jb phaili dafa ap sy bat huwi ajnabi thy dono Hmm or fr pasand ap aii jaisy mainy sovha ky apka number lon or ap sy bat krom ma jann mujy bhi dhondna tha tarika To fr ap phaily to dy ni rhi thi ya lafz ky ma Whatsapp use ni krti ya woo fr mujy mainy ap sy video bunwany ky chakr ma hi ap sy number ly liya ap ny video bunai ab agy yad krnaa ...... 
+ or fr date 19 ko night 8:55 9 bujy ny waly thy ap ny kha ky subha hamy 5 bujy nikalna hi utho gi kaisy to First kiss lafz ki shurwat tb ki mainy ky ma uthaon ga kiss kr ky .... fr jb 20 date ko safar ma thy ap ny kha sath chlo hamary ghar chly to ap ko itbar ni huws whaky chall raha hon us time pury rasty ma nazar apki ankho ma thii ap dakh ni pa rhii thii meri trf ...  or kuch puchna ho na jann too pochna whatsapp py idr itni type available ni hii "
+ },
+ 16:{
+ id:"type16",
+ text:" Meri Galat tariky sy bat krny ky liya or meny jo galtiya ki hi jan aj unky liya mafi mangta hon ap sy
+ SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY SORRY "
+ },
+17:{
+ id:"type17",
+ text:" I LOVE YOU SOO MUCH MERI JAAN 
+ I LOVE YOU SOO MUCH MERI JAAN 
+   I LOVE YOU SOO MUCH MERI JAAN 
+     I LOVE YOU SOO MUCH MERI JAAN
+       I LOVE YOU SOO MUCH MERI JAAN 
+         I LOVE YOU SOO MUCH MERI JAAN
+           I LOVE YOU SOO MUCH MERI JAAN
+              I LOVE YOU SOO MUCH MERI JAAN
+            I LOVE YOU SOO MUCH MERI JAAN
+          I LOVE YOU SOO MUCH MERI JAAN
+        I LOVE YOU SOO MUCH MERI JAAN
+      I LOVE YOU SOO MUCH MERI JAAN
+   I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN
+I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN 
+   I LOVE YOU SOO MUCH MERI JAAN 
+     I LOVE YOU SOO MUCH MERI JAAN
+       I LOVE YOU SOO MUCH MERI JAAN 
+         I LOVE YOU SOO MUCH MERI JAAN
+           I LOVE YOU SOO MUCH MERI JAAN
+              I LOVE YOU SOO MUCH MERI JAAN
+            I LOVE YOU SOO MUCH MERI JAAN
+          I LOVE YOU SOO MUCH MERI JAAN
+        I LOVE YOU SOO MUCH MERI JAAN
+      I LOVE YOU SOO MUCH MERI JAAN
+   I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN
+I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN 
+   I LOVE YOU SOO MUCH MERI JAAN 
+     I LOVE YOU SOO MUCH MERI JAAN
+       I LOVE YOU SOO MUCH MERI JAAN 
+         I LOVE YOU SOO MUCH MERI JAAN
+           I LOVE YOU SOO MUCH MERI JAAN
+              I LOVE YOU SOO MUCH MERI JAAN
+            I LOVE YOU SOO MUCH MERI JAAN
+          I LOVE YOU SOO MUCH MERI JAAN
+        I LOVE YOU SOO MUCH MERI JAAN
+      I LOVE YOU SOO MUCH MERI JAAN
+   I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN
+I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN 
+   I LOVE YOU SOO MUCH MERI JAAN 
+     I LOVE YOU SOO MUCH MERI JAAN
+       I LOVE YOU SOO MUCH MERI JAAN 
+         I LOVE YOU SOO MUCH MERI JAAN
+           I LOVE YOU SOO MUCH MERI JAAN
+              I LOVE YOU SOO MUCH MERI JAAN
+            I LOVE YOU SOO MUCH MERI JAAN
+          I LOVE YOU SOO MUCH MERI JAAN
+        I LOVE YOU SOO MUCH MERI JAAN
+      I LOVE YOU SOO MUCH MERI JAAN
+   I LOVE YOU SOO MUCH MERI JAAN
+ I LOVE YOU SOO MUCH MERI JAAN
+I LOVE YOU SOO MUCH MERI JAAN
+"
+}
 };
 
 function type(el,text){
@@ -169,14 +390,14 @@ function startTyping(p){
   let delay=0;
   d.forEach(o=>{
    let e=document.getElementById(o.id);
-   if(!e || e.dataset.done) return;
+   if(e.dataset.done) return;
    e.dataset.done=1;
    setTimeout(()=>type(e,o.text),delay);
-   delay+=o.text.length*60;
+   delay+=o.text.length*70;
   });
  }else{
   let e=document.getElementById(d.id);
-  if(!e || e.dataset.done) return;
+  if(e.dataset.done) return;
   e.dataset.done=1;
   type(e,d.text);
  }
