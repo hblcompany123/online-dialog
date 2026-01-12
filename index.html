@@ -10,8 +10,7 @@
 body{background:black;color:white;overflow:hidden}
 
 canvas{
- position:fixed;
- top:0;left:0;
+ position:fixed;top:0;left:0;
  width:100%;height:100%;
  z-index:-1;
 }
@@ -40,52 +39,26 @@ button{
  cursor:pointer;
 }
 
-/* FLOWERS */
-.flower{
- position:absolute;
- font-size:30px;
- animation:spin 6s linear infinite;
-}
-@keyframes spin{
- from{transform:rotate(0)}
- to{transform:rotate(360deg)}
-}
+.flower{position:absolute;font-size:30px;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .tl{top:15px;left:15px}
 .tr{top:15px;right:15px}
 .bl{bottom:15px;left:15px}
 .br{bottom:15px;right:15px}
 
-/* NAME */
 .zoom-name{
- font-size:46px;
- color:#ff4d6d;
+ font-size:46px;color:#ff4d6d;
  animation:zoom 2s ease forwards;
  transform:scale(0);
  min-height:60px;
 }
-@keyframes zoom{
- to{transform:scale(1.3)}
-}
+@keyframes zoom{to{transform:scale(1.3)}}
 
-.title{
- font-size:36px;
- color:#ff4d6d;
- margin-bottom:15px;
- min-height:50px;
-}
-.text{
- max-width:750px;
- line-height:1.9;
- min-height:80px;
- font-size:17px;
-}
-
+.title{font-size:36px;color:#ff4d6d;margin-bottom:15px}
+.text{max-width:800px;line-height:1.9;font-size:17px}
 .emoji{font-size:32px;margin-bottom:15px}
 
-.cursor::after{
- content:"|";
- animation:blink 1s infinite;
-}
+.cursor::after{content:"|";animation:blink 1s infinite}
 @keyframes blink{50%{opacity:0}}
 </style>
 </head>
@@ -94,12 +67,12 @@ button{
 
 <canvas id="stars"></canvas>
 
-<!-- PAGE 1 COUNTDOWN -->
+<!-- PAGE 1 -->
 <div class="page active" id="p1">
  <div class="count" id="count">5</div>
 </div>
 
-<!-- PAGE 2 NAME -->
+<!-- PAGE 2 -->
 <div class="page" id="p2">
  <div class="flower tl">🌸</div><div class="flower tr">🌸</div>
  <div class="flower bl">🌸</div><div class="flower br">🌸</div>
@@ -108,95 +81,22 @@ button{
  <button onclick="go(3)">Next</button>
 </div>
 
-<!-- PAGE 3 -->
-<div class="page" id="p3">
- <div class="title cursor" id="type3t"></div>
- <div class="text cursor" id="type3"></div>
- <button onclick="go(4)">Next</button>
-</div>
+<!-- PAGES 3–20 -->
+<script>
+const body=document.body;
 
-<!-- PAGE 4 -->
-<div class="page" id="p4">
- <div class="title">Date 4 – First Meet</div>
- <div class="text cursor" id="type4"></div>
- <button onclick="go(5)">Next</button>
-</div>
-
-<!-- PAGE 5 -->
-<div class="page" id="p5">
- <div class="title">Date 6 – Friendship</div>
- <div class="text cursor" id="type5"></div>
- <button onclick="go(6)">Next</button>
-</div>
-
-<!-- PAGE 6 -->
-<div class="page" id="p6">
- <div class="title">Date 13 – Purpose Day ⭐</div>
- <div class="text cursor" id="type6"></div>
- <button onclick="go(7)">Next</button>
-</div>
-
-<!-- PAGE 7 -->
-<div class="page" id="p7">
- <div class="title">Memories 🌸</div>
- <div class="text cursor" id="type7"></div>
- <button onclick="go(8)">Next</button>
-</div>
-
-<!-- PAGE 8 -->
-<div class="page" id="p8">
- <div class="title">Promises 🤍</div>
- <div class="text cursor" id="type8"></div>
- <button onclick="go(9)">Next</button>
-</div>
-
-<!-- PAGE 9 -->
-<div class="page" id="p9">
- <div class="title">Ups & Downs</div>
- <div class="text cursor" id="type9"></div>
- <button onclick="go(10)">Next</button>
-</div>
-
-<!-- PAGE 10 -->
-<div class="page" id="p10">
- <div class="title">Support 🫶</div>
- <div class="text cursor" id="type10"></div>
- <button onclick="go(11)">Next</button>
-</div>
-
-<!-- PAGE 11 -->
-<div class="page" id="p11">
- <div class="title">Trust</div>
- <div class="text cursor" id="type11"></div>
- <button onclick="go(12)">Next</button>
-</div>
-
-<!-- PAGE 12 -->
-<div class="page" id="p12">
- <div class="title">Love Grows 💖</div>
- <div class="text cursor" id="type12"></div>
- <button onclick="go(13)">Next</button>
-</div>
-
-<!-- PAGE 13 -->
-<div class="page" id="p13">
- <div class="title">Forever ♾️</div>
- <div class="text cursor" id="type13"></div>
- <button onclick="go(14)">Next</button>
-</div>
-
-<!-- PAGE 14 -->
-<div class="page" id="p14">
- <div class="title">My Dua 🤲</div>
- <div class="text cursor" id="type14"></div>
- <button onclick="go(15)">Next</button>
-</div>
-
-<!-- PAGE 15 -->
-<div class="page" id="p15">
- <div class="emoji">💖 💖 💖</div>
- <div class="title">Always You</div>
-</div>
+for(let i=3;i<=20;i++){
+ let d=document.createElement("div");
+ d.className="page";
+ d.id="p"+i;
+ d.innerHTML=`
+  <div class="title">Page ${i}</div>
+  <div class="text cursor" id="type${i}"></div>
+  ${i<20?'<button onclick="go('+(i+1)+')">Next</button>':''}
+ `;
+ body.appendChild(d);
+}
+</script>
 
 <script>
 function go(n){
@@ -208,83 +108,66 @@ function go(n){
 /* COUNTDOWN */
 let c=5;
 let t=setInterval(()=>{
- count.innerText=c;
- c--;
+ count.innerText=c--;
  if(c<0){clearInterval(t);go(2);}
 },1000);
 
 /* TEXT DATA */
 const texts={
-2:{
- id:"typeName",
- text:"Ibrat ❤️ Waqas"
-},
+2:{id:"typeName",text:"Fiza ❤️ Waqas"},
 
-3:[
- {
-  id:"type3t",
-  text:"Happy Anniversary 💖"
- },
- {
-  id:"type3",
-  text:"Saath hona sirf qareeb rehna nahi hota… saath hona wo ehsaas hota hai jahan lafzon ki zarurat nahi rehti, jahan khamoshi bhi sukoon ban jaati hai. Saath hona wo jagah hai jahan dil bina dar ke dhadakta hai, jahan insaan khud ko mehfooz, mukammal aur apna mehsoos karta hai."
-}
-],
+3:{id:"type3",text:`Happy Anniversary meri jaan 💖
+Tum meri zindagi ka wo hissa ho jiske baghair har cheez adhoori lagti hai.`},
 
-4:{
- id:"type4",
- text:"Wo pehla din jab apki aankhon ne 🫴👀 mere dil se baat ki… mujhe us din ka har pal aaj bhi yaad hai. Wo ek nazar, wo ek ehsaas, jis ne meri poori zindagi ka rukh badal diya. Us din mujhe pata bhi nahi tha ke main apni zindagi ka sab se khoobsurat safar shuru kar raha hoon. Aaj hum yahan tak pohanch chukay hain—kabhi hansi, kabhi aansu, kabhi larai, kabhi mananay ke lamhay… lekin har dafa ek doosray ko aur zyada apna banaya. 1 saal complete ho gaya meri jaan ❤️😍 aur ye sirf shuruat hai."
-},
+4:{id:"type4",text:`Wo pehla din jab tumhari aankhon ne mere dil se baat ki,
+us pal ne meri poori zindagi badal di.`},
 
-5:{
- id:"type5",
- text:"Jab mujhe ap pasand aayi thi, uske bilkul aglay din ap meri dost ban gayi. Shayad us waqt hum dono ko andaza nahi tha ke ye dosti ek din meri zindagi ka sab se qeemti rishta ban jaayegi. TikTok ke zariye shuru hone wali baat, aaj mere dil ki sab se gehri baat ban chuki hai."
-},
+5:{id:"type5",text:`Dosti se shuru hone wala rishta,
+aaj meri zindagi ki sab se khoobsurat mohabbat hai.`},
 
-6:{
- id:"type6",
- text:"Date 13 wo din hai jo meri zindagi mein sirf ek tareekh nahi, balkay ek pehchaan ban kar aaya. Is din ne mujhe zindagi ka maqsad diya, mujhe zimmedari ka ehsaas dilaya, aur mujhe sikhaya ke kisi ka hona kitni badi rehmat hoti hai. Ye din meri rooh ka hissa hai, aur hamesha rahega."
-},
+6:{id:"type6",text:`Date 13 meri zindagi ka sab se khaas din hai,
+jis ne mujhe zimmedari aur mohabbat dono sikha di.`},
 
-7:{
- id:"type7",
- text:"Har choti baat, har muskurahat, har narazgi, har sulah… sab kuch yaadon ka ek aisa khoobsurat silsila ban gaya hai jo waqt ke saath aur bhi qeemti hota ja raha hai. Har yaad mein sirf tum ho."
-},
+7:{id:"type7",text:`Har hansi, har aansu,
+har narazgi aur har sulah sirf tum se judi hai.`},
 
-8:{
- id:"type8",
- text:"Main ne har wada ap se apne dil se kiya hai. Na kabhi jhoota wada kiya, na kabhi kisi wada ko halka samjha. Shayad main apna pyaar lafzon mein achi tarah bayan na kar paon, lekin mera dil gawah hai ke mera har wada sirf aur sirf tumhare liye hai."
-},
+8:{id:"type8",text:`Main wada karta hoon,
+har halat mein tumhara saath dunga.`},
 
-9:{
- id:"type9",
- text:"Mushkilein aayi, dard bhi hua, kabhi zindagi ne sakht imtihaan liya… lekin hum ne kabhi ek doosray ka saath nahi chhoda. Shayad isi ka naam sachi mohabbat hota hai—jo mushkil waqt mein aur zyada mazboot ho jaati hai."
-},
+9:{id:"type9",text:`Mushkilein aayi,
+lekin hum kabhi alag nahi hue.`},
 
-10:{
- id:"type10",
- text:"Apka saath meri sab se bari taqat hai. Jab ap paas hoti ho, to zindagi ke bojh halka ho jaata hai. Apki muskurahat mere liye himmat ban jaati hai, aur apka hona meri zindagi ka sab se bada sukoon hai."
-},
+10:{id:"type10",text:`Tumhara saath meri taqat hai,
+aur tumhari muskurahat meri jaan.`},
 
-11:{
- id:"type11",
- text:"Bharosa wo bunyaad hai jis par humara rishta khara hai. Ap par bharosa karna meri zindagi ka sab se khoobsurat faisla tha. Main janta hoon ke jab tak ap mere saath ho, main kabhi tanha nahi ho sakta."
-},
+11:{id:"type11",text:`Bharosa wo bunyaad hai
+jis par humara rishta khara hai.`},
 
-12:{
- id:"type12",
- text:"Waqt ke saath mohabbat kam nahi hui… balkay aur gehri, aur zyada sacchi hoti chali gayi. Shayad main apna pyaar hamesha zahir na kar paon, majbooriyan aa jaati hain, mushkil waqt aa jata hai… lekin mera dil sirf apka hai. Bas dua hai ke ye bura waqt guzar jaaye 🥺."
-},
+12:{id:"type12",text:`Waqt ke saath mohabbat aur gehri hoti gayi,
+kabhi kam nahi hui.`},
 
-13:{
- id:"type13",
- text:"Forever ka matlab sirf ek lafz nahi hota… forever ka matlab wo har subah hai jo tumhare saath ho, wo har dua hai jo tumhare liye ho, wo har khwab hai jo tumse jud kar dekha ho. Forever ka matlab sirf ap ho."
-},
+13:{id:"type13",text:`Forever ka matlab sirf ek lafz nahi,
+forever ka matlab sirf tum ho.`},
 
-14:{
- id:"type14",
- text:"Ya Allah… Tu hum dono ko apni hifazat mein rakhna. Humare dilon ko ek doosray ke liye naram rakhna. Jab zindagi mushkil ho jaaye to humein sabr dena، jab khushi aaye to shukar ada karna sikha dena. Humare rishte ko buri nazar se, ghalat fahmiyon se, aur har takleef se mehfooz rakhna. Humein ek doosray ka sukoon, taqat aur rehmat bana dena. Ya Allah, jab hum kamzor ho jaayein to humein ek doosray ka sahara bana dena. Ameen 🤲"
-}
+14:{id:"type14",text:`Ya Allah,
+hum dono ko hamesha ek doosray ka sukoon bana de. Ameen 🤲`},
+
+15:{id:"type15",text:`Tumhari yaadein,
+meri har dua mein shaamil hain.`},
+
+16:{id:"type16",text:`Meri har ghalti ke liye,
+dil se maafi chahta hoon.`},
+
+17:{id:"type17",text:`I LOVE YOU SO MUCH MERI JAAN ❤️`},
+
+18:{id:"type18",text:`Tum meri zindagi ho,
+mera sab kuch.`},
+
+19:{id:"type19",text:`Har janam,
+sirf tum.`},
+
+20:{id:"type20",text:`Happy Anniversary 💖
+Always & Forever`}
 };
 
 function type(el,text){
@@ -292,27 +175,16 @@ function type(el,text){
  let s=setInterval(()=>{
   el.textContent+=text[i++]||"";
   if(i>text.length) clearInterval(s);
- },60);
+ },50);
 }
 
 function startTyping(p){
  let d=texts[p];
  if(!d) return;
- if(Array.isArray(d)){
-  let delay=0;
-  d.forEach(o=>{
-   let e=document.getElementById(o.id);
-   if(e.dataset.done) return;
-   e.dataset.done=1;
-   setTimeout(()=>type(e,o.text),delay);
-   delay+=o.text.length*70;
-  });
- }else{
-  let e=document.getElementById(d.id);
-  if(e.dataset.done) return;
-  e.dataset.done=1;
-  type(e,d.text);
- }
+ let e=document.getElementById(d.id);
+ if(e.dataset.done) return;
+ e.dataset.done=1;
+ type(e,d.text);
 }
 
 /* STARS */
